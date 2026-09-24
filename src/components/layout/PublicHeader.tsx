@@ -36,14 +36,14 @@ export function PublicHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        {/* <div className="hidden items-center gap-3 lg:flex">
           <Button href="/login" variant="ghost" size="sm">
             Login
           </Button>
           <Button href="/signup" variant="primary" size="sm">
             Sign Up
           </Button>
-        </div>
+        </div> */}
 
         <button
           className="lg:hidden rounded-md p-2 hover:bg-black/5"
@@ -68,7 +68,7 @@ export function PublicHeader() {
               </Link>
             ))}
           </nav>
-          <div className="mt-4 flex gap-3">
+          {/*  <div className="mt-4 flex gap-3">
             <Button
               href="/login"
               variant="outline"
@@ -85,7 +85,7 @@ export function PublicHeader() {
             >
               Sign Up
             </Button>
-          </div>
+          </div> */}
         </div>
       )}
     </header>
