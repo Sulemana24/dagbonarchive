@@ -34,12 +34,20 @@ export function Logo({
   const taglineColor = variant === "dark" ? "text-muted" : "text-white/70";
   const isVertical = orientation === "vertical";
 
+  // For numeric sizes, scale fluidly between a mobile floor and the
+  // requested size instead of staying fixed at every viewport width.
+  const markHeight = isPreset(size)
+    ? `${s.mark}px`
+    : `clamp(${Math.round(s.mark * 0.6)}px, ${(s.mark / 16).toFixed(
+        2,
+      )}vw, ${s.mark}px)`;
+
   return (
     <div
       className={
         isVertical
           ? "flex flex-col items-center gap-1 text-center"
-          : "flex items-center gap-3"
+          : "flex items-center gap-2 sm:gap-3"
       }
     >
       <Image
@@ -48,20 +56,22 @@ export function Logo({
         width={s.mark * 2}
         height={s.mark * 2}
         priority
-        className="object-contain"
-        style={{ height: s.mark, width: "auto" }}
+        className="object-contain shrink-0"
+        style={{ height: markHeight, width: "auto" }}
       />
 
-      <div className="leading-none">
+      <div className="leading-none min-w-0">
         <p
-          className={`font-display font-semibold tracking-tight ${s.title} ${titleColor}`}
+          className={`font-display font-semibold tracking-tight truncate ${s.title} ${titleColor}`}
         >
           Dagbon Archive
         </p>
         {showTagline && (
           <p
-            className={`mt-0.5 ${s.tagline} ${taglineColor} ${
-              isVertical ? "max-w-xs" : ""
+            className={`mt-0.5 hidden sm:block ${s.tagline} ${taglineColor} ${
+              isVertical
+                ? "max-w-xs"
+                : "max-w-[220px] md:max-w-none truncate md:whitespace-normal"
             }`}
           >
             Preserving Dagbon. Teaching Dagbani. Connecting Generations.
